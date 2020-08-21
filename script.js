@@ -13,7 +13,7 @@ var calContainer = $(".container");
 
 // create workDayHours array to hold all hours in the work day from 9 to 5
 
-var workDayHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM"]; //don't forget to take out test hours!
+var workDayHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
 // iterate through wordDayHours and set default elements for each timeBlock / workDayHour
 
@@ -33,7 +33,6 @@ for (i = 0; i < workDayHours.length; i++) {
     }
     // continue with timeBlock element using applicable dataTime for hour attribute
     timeBlock.data("hour", dataTime);
-    console.log(timeBlock.data("hour"));
 
     var hourEl = $("<div></div>");
     hourEl.attr("class", "col col-md-1 hour");
@@ -71,10 +70,12 @@ var allTimeBlocks = $(".time-block");
 allTimeBlocks.each(function() {
     if ($(this).data("hour") < currentHour) {
         $(this).addClass("past");
-    } else if ($(this).data("hour") > currentHour) {
-        $(this).addClass("future");
-    } else {
+    };
+    if ($(this).data("hour") == currentHour) {
         $(this).addClass("present");
+    };
+    if ($(this).data("hour") > currentHour) {
+        $(this).addClass("future");
     }
 });
 
