@@ -19,8 +19,7 @@ var workDayHours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "
 
 for (i = 0; i < workDayHours.length; i++) {
 
-    // set variables for all elements and apply starter attributes
-
+    // set html and class for timeBlocks
     var timeBlock = $("<div></div>");
     timeBlock.attr("class", "row time-block");
 
@@ -31,21 +30,27 @@ for (i = 0; i < workDayHours.length; i++) {
     } else {
         dataTime = (i + 9).toString();
     }
+
     // continue with timeBlock element using applicable dataTime for hour attribute
     timeBlock.data("hour", dataTime);
 
+    // set html and text for hourEls (using array text)
     var hourEl = $("<div></div>");
     hourEl.attr("class", "col col-md-1 hour");
     hourEl.text(workDayHours[i]);
 
+    // set <textareas> within each descriptionEL (immediately adjacent to hourEl)
     var descriptionEl = $("<textarea></textarea>");
     descriptionEl.attr("class", "col col-md-10 description");
-    // also want to set hour data-attribute to descriptionEl for locakStorage key
+
+    // also want to set hour data-attribute to descriptionEl for localStorage key
     descriptionEl.data("hour", dataTime);
 
+    // create save buttons to be adjacent to each descriptionEl
     var saveBtn = $("<button ></button>");
     saveBtn.attr("class", "col col-md-1 saveBtn");
 
+    // icon from font awesome will go within each saveBtn
     var saveIcon = $("<i></i>");
     saveIcon.attr("class", "fas fa-save");
 
@@ -101,3 +106,5 @@ allSaveBtns.on("click", function(event) {
         localStorage.setItem(saveDescriptionEl.data("hour"), saveDescriptionElVal);
     }
 });
+
+// done!
